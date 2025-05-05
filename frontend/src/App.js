@@ -2,8 +2,8 @@ import './App.css';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import EmployeeManagementApp from './Components/EmployeeManagementApp';
 import EmployeeDetails from './Components/EmployeeDetails';
-// import Signup from './Components/Signup';
-// import Login from './Components/Login';
+ import Signup from './Components/Signup';
+ import Login from './Components/Login';
 function App() {
   return (
     <div>
