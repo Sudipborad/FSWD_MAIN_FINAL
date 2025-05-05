@@ -4,7 +4,7 @@ const EmployeeModel = require("../Models/EmployeeModel");
 const createEmployee = async (req, res) => {
     try {
         const body = req.body;
-        const profileImage = req?.file ? req?.file?.path : null;
+        const profileImage = req?.file ? `/uploads/${req.file.filename}` : null;
         body.profileImage = profileImage;
         const emp = new EmployeeModel(body);
 
@@ -19,7 +19,7 @@ const createEmployee = async (req, res) => {
         res.status(500).json({
             message: 'Internal Server Error',
             success: false,
-            error: err
+            error: err.message
         })
     }
 }
@@ -129,7 +129,7 @@ const updateEmployeeById = async (req, res) => {
         };
         console.log('<-- update ---> ', req.file)
         if (req.file) {
-            updateData.profileImage = req.file.path;
+            updateData.profileImage = `/uploads/${req.file.filename}`;
         }
         const updatedEmployee = await EmployeeModel.findByIdAndUpdate(
             id,

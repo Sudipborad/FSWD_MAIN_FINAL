@@ -11,7 +11,7 @@ function AddEmployee({
         phone: '',
         department: '',
         salary: '',
-        profileImage: null
+        // profileImage: null
     });
     const [updateMode, setUpdateMode] = useState(false);
 
@@ -38,7 +38,7 @@ function AddEmployee({
             phone: '',
             department: '',
             salary: '',
-            profileImage: null,
+            // profileImage: null,
         })
     }
 

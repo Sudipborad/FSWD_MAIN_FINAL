@@ -7,6 +7,9 @@ const EmployeeDetails = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const [employee, setEmployee] = useState({});
+    const [imageError, setImageError] = useState(false);
+    
+    const defaultImage = 'https://via.placeholder.com/150?text=No+Image';
 
     const fetchEmployeeDetails = async () => {
         try {
@@ -16,9 +19,10 @@ const EmployeeDetails = () => {
             alert('Error', err);
         }
     }
+
     useEffect(() => {
         fetchEmployeeDetails();
-    }, [id])
+    }, [id]);
 
     if (!employee) {
         return <div>Employee not found</div>;
@@ -34,9 +38,11 @@ const EmployeeDetails = () => {
                     <div className="row mb-3">
                         <div className="col-md-3">
                             <img
-                                src={employee.profileImage}
-                                alt={employee.name}
-                                className="img-fluid rounded"
+                                src={imageError ? defaultImage : employee.profileImage || defaultImage}
+                                alt={employee.name || 'Employee'}
+                                className="img-fluid rounded shadow"
+                                style={{ maxWidth: '200px', minHeight: '200px', objectFit: 'cover' }}
+                                onError={() => setImageError(true)}
                             />
                         </div>
                         <div className="col-md-9">
